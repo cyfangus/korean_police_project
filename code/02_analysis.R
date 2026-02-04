@@ -19,7 +19,7 @@ willingess_to_report_plot <-
   labs(
     title = "Distribution of Willingness to Report",
     subtitle = "Categorical view removes empty space between scores",
-    x = "Willingness Score",
+    x = "Willingness to report crime in future",
     y = "Number of Respondents"
   ) +
   # Expand the y-axis slightly so the labels don't get cut off at the top
