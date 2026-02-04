@@ -1,5 +1,6 @@
 # Korean Police Project
-## Overview
+
+## Overview
 This repository contains the code and documentation for the analysis of the first_wave.csv dataset, aimed at investigating how the evaluattion of procedural justice in telephone non-face-to-face policing enviroment impact their willingess to report crime in future and satisfaction over the process.
 
 The project follows reproducible research principles using R, RStudio, Git, and the renv package for dependency management.
