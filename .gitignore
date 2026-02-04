@@ -6,3 +6,6 @@
 .httr-oauth
 .DS_Store
 .quarto
+
+# Ignore the entire data directory for sensitive data
+data/
