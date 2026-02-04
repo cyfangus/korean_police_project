@@ -4,6 +4,7 @@ library(ggplot2)
 library(MASS)
 library(broom)
 library(ggplot2)
+library(logistf)
 
 # --- 1. Read the raw data ---
 # Use the 'here' package to construct file paths robustly
@@ -60,11 +61,11 @@ multi_model <- polr(will_report_ordered ~ age + pol_eff + pol_dj + pol_pj,
                         data = cleaned_data, Hess = TRUE)
 
 
-# chi-square test between adsms and Victimisation
-contingency_table <- table(cleaned_data$adsms, cleaned_data$victimisation)
-chi_results <- chisq.test(contingency_table)
+# Firth’s Penalized Logistic Regression (specifically designed to handle "small-sample bias" and "separation" in logistic regression. It applies a penalty to the likelihood function, which provides much more reliable estimates when the "1" category is very small.
+firth_model_vicimisation <- logistf(victimisation ~ age + counsel_eff + counsel_pj, 
+                       data = cleaned_data)
 
-# print results
+y# --- 3. Reporting results ---
 # Wilcoxon Test Results
 print(wilcox_will_report_pjq)
 print(wilcox_will_report_urgency)
@@ -75,10 +76,10 @@ summary(baseline_model)
 summary(multi_model)
 exp(coef(multi_model))
 
-# Chi-square Test Results
-print(chi_results)
+# Firth’s Penalized Logistic Regression Results
+summary(firth_model_vicimisation)
 
-# --- 3. Visulisation ---
+# --- 4. Visulisation ---
 # --- Forest Plot of Willingness to Report --- 
 # Tidy the model
 tidy_model <- tidy(multi_model, conf.int = TRUE, exponentiate = TRUE)
