@@ -21,7 +21,8 @@ cleaned_data <- raw_data |>
 
 # Convert all binary variables to 0 and 1 and to factors
 cleaned_data <- cleaned_data |>
-  mutate(across(c(pjq, urgency, adsms, victimisation), ~ as.factor(. - 1)))
+  mutate(across(c(pjq, urgency), ~ .x - 1)) |> 
+  mutate(across(c(pjq, urgency, adsms, victimisation), as.factor))
 
 describe(cleaned_data)
 
